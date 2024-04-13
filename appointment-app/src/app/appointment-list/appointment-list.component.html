@@ -1,13 +1,41 @@
-<div>
-   <input type="text" [(ngModel)]="newAppointmentTitle" placeholder="Appointment Description">
-   <input type="Date" [(ngModel)]="newAppointmentDate"  placeholder="Appointment Description">
-    <button (click)="onAddAppointment()">Add Appointment</button>
+<div class="container">
+  <div class="card mt-3">
+    <div class="row">
+      <div class="col">
+        <div class="text-center">Create New Appointment App</div>
+      </div>
+    </div>
+    <div class="row mt-3 p-2">
+      <div class="col-md-6">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="newAppointmentTitle"
+          placeholder="Appointment Description"
+        />
+      </div>
+      <div class="col-md-4 mb-2">
+        <input
+          class="form-control"
+          type="Date"
+          [(ngModel)]="newAppointmentDate"
+          placeholder="Appointment Description"
+        />
+      </div>
+        <div class="col-md-2 ">
+        <button class="btn btn-success w-100" (click)="onAddAppointment()">Add Appointment</button>
+        </div>
+    </div>
+  </div>
+  <h2 class="text-center">Appointments</h2>
+  <ul class="list-group mt-3" *ngFor="let appointment of appointments; index as i">
+    <li class="list-group-item d-flex justify-content-between align-items-center">Appointment ID : {{ appointment.id }}</li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">Appointment Name : {{ appointment.title }}</li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">Appointment Date : {{ appointment.date | date : "fullDate" }}</li>
+    <button class="btn btn-danger" (click)="deleteAppointment(i)">Delete</button>
+  </ul>
 </div>
+
 <div>
-    <ul *ngFor="let appointment of appointments; index as i">
-    <li >Appointment ID : {{appointment.id}} </li>
-    <li>Appointment Name : {{appointment.title}} </li> 
-    <li>Appointment Date : {{appointment.date | date:'fullDate'}}</li>
-    <button (click)="deleteAppointment(i)">Delete</button>
-</ul>
+  
 </div>
